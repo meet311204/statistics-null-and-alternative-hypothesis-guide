@@ -1,0 +1,377 @@
+import { PracticeProblem } from '../types/stats';
+
+export const CURATED_PRACTICE_PROBLEMS: PracticeProblem[] = [
+  {
+    id: 'prob-1-hypertension',
+    title: 'Cardiology Drug Trial: Lowering Systolic BP',
+    domain: 'Healthcare & Medicine',
+    iconName: 'HeartPulse',
+    difficulty: 'Beginner',
+    scenario:
+      'A pharmaceutical research team has developed a novel peptide medication intended to reduce systolic blood pressure in stage-1 hypertensive patients. The standard historical mean systolic blood pressure for this untreated cohort is known to be μ = 135.0 mmHg with a known population standard deviation σ = 14.0 mmHg. A clinical trial administers the peptide to a randomized cohort of n = 49 patients. After 8 weeks, the observed sample mean systolic blood pressure is x̄ = 131.2 mmHg. The researchers wish to test if the medication significantly reduces blood pressure at significance level α = 0.05.',
+    parameterSymbol: 'μ',
+    parameterName: 'Mean Systolic Blood Pressure',
+    unit: 'mmHg',
+    mu0: 135.0,
+    direction: 'left_tailed',
+    directionLabel: 'Left-tailed (Testing for reduction: μ < 135)',
+    h0Formula: 'H₀: μ = 135.0 mmHg (or μ ≥ 135.0)',
+    haFormula: 'Hₐ: μ < 135.0 mmHg (Medication significantly lowers BP)',
+    testType: 'z_test',
+    alpha: 0.05,
+    n: 49,
+    sampleMean: 131.2,
+    stdDev: 14.0,
+    stdError: 2.0,
+    testStatistic: -1.90,
+    criticalValues: {
+      left: -1.645,
+      right: null,
+    },
+    pValue: 0.0287,
+    correctDecision: 'reject',
+    realWorldInterpretation:
+      'Because p = 0.0287 is less than α = 0.05 (and z = -1.90 is beyond z_crit = -1.645), we reject the null hypothesis. There is statistically significant clinical evidence at the 5% level to conclude that the new peptide medication reduces systolic blood pressure.',
+    commonPitfall:
+      'Writing the hypothesis in terms of sample mean (e.g. H₀: x̄ = 135) instead of population parameter μ. Hypotheses are statements about the unknown population, never about the sample data you already observed!',
+    questionPrompts: {
+      step1: {
+        question: 'Which of the following correctly specifies the Null (H₀) and Alternative (Hₐ) hypotheses?',
+        options: [
+          { id: 'a', label: 'H₀: μ = 135.0 vs Hₐ: μ < 135.0', isCorrect: true },
+          { id: 'b', label: 'H₀: x̄ = 131.2 vs Hₐ: x̄ < 131.2', isCorrect: false },
+          { id: 'c', label: 'H₀: μ = 135.0 vs Hₐ: μ ≠ 135.0', isCorrect: false },
+          { id: 'd', label: 'H₀: μ < 135.0 vs Hₐ: μ = 135.0', isCorrect: false },
+        ],
+      },
+      step2: {
+        question: 'Which statistical test is appropriate for this design and what is the critical value for α = 0.05?',
+        options: [
+          { id: 'a', label: 'One-sample Z-test with left critical value z_crit = -1.645 (since σ is known and n=49 ≥ 30)', isCorrect: true },
+          { id: 'b', label: 'Two-sample T-test with t_crit = ±2.01', isCorrect: false },
+          { id: 'c', label: 'One-sample Z-test with right critical value z_crit = +1.645', isCorrect: false },
+          { id: 'd', label: 'Chi-Square Goodness of Fit test with df = 48', isCorrect: false },
+        ],
+      },
+      step3: {
+        question: 'Calculate the test statistic z = (x̄ - μ₀) / (σ / √n). Enter the rounded z-score to 2 decimal places:',
+        correctValue: -1.9,
+        tolerance: 0.05,
+        unit: 'z-score',
+      },
+      step4: {
+        question: 'Using the standard normal distribution, calculate the p-value: P(Z ≤ -1.90). Enter value to 4 decimal places (around 0.0287):',
+        correctValue: 0.0287,
+        tolerance: 0.005,
+      },
+      step5: {
+        question: 'What is the correct statistical decision and real-world conclusion?',
+        options: [
+          { id: 'a', label: 'Reject H₀: Since p-value (0.029) ≤ α (0.05), we have sufficient evidence that the drug lowers blood pressure.', isCorrect: true },
+          { id: 'b', label: 'Fail to reject H₀: We accept the null hypothesis and prove the drug does nothing.', isCorrect: false },
+          { id: 'c', label: 'Fail to reject H₀: Because the p-value is greater than 0.05.', isCorrect: false },
+          { id: 'd', label: 'Reject H₀: We have 100% certainty that the drug works for everyone.', isCorrect: false },
+        ],
+      },
+    },
+  },
+  {
+    id: 'prob-2-ecommerce',
+    title: 'E-Commerce Platform: Conversion Revenue Increase',
+    domain: 'Tech & Marketing Analytics',
+    iconName: 'ShoppingCart',
+    difficulty: 'Intermediate',
+    scenario:
+      'A popular e-commerce platform redesigned its checkout flow to reduce friction. Historical revenue per visiting customer session is μ = $42.00 with standard deviation σ = $12.00. The product team runs an experiment on n = 64 random shopper sessions using the new layout and observes a sample mean revenue of x̄ = $45.60 per visitor. The VP of Growth sets a strict significance threshold of α = 0.01 to ensure the investment is justified before a global rollout. Test whether the redesign genuinely increases revenue.',
+    parameterSymbol: 'μ',
+    parameterName: 'Mean Revenue Per Visitor',
+    unit: '$',
+    mu0: 42.0,
+    direction: 'right_tailed',
+    directionLabel: 'Right-tailed (Testing for increase: μ > 42)',
+    h0Formula: 'H₀: μ = $42.00 (New design does not improve revenue)',
+    haFormula: 'Hₐ: μ > $42.00 (New design increases average revenue)',
+    testType: 'z_test',
+    alpha: 0.01,
+    n: 64,
+    sampleMean: 45.6,
+    stdDev: 12.0,
+    stdError: 1.5,
+    testStatistic: 2.40,
+    criticalValues: {
+      left: null,
+      right: 2.326,
+    },
+    pValue: 0.0082,
+    correctDecision: 'reject',
+    realWorldInterpretation:
+      'With z = 2.40 exceeding z_crit = 2.326 and p = 0.0082 being less than α = 0.01, we reject H₀. There is strong statistical evidence at the 1% significance level that the checkout redesign increases mean customer revenue.',
+    commonPitfall:
+      'Using a two-tailed critical value (z = ±2.576) when the product hypothesis explicitly targeted an increase (one-tailed right test, z_crit = 2.326).',
+    questionPrompts: {
+      step1: {
+        question: 'Identify the direction and formulation of H₀ and Hₐ:',
+        options: [
+          { id: 'a', label: 'Right-tailed test: H₀: μ = 42.00 vs Hₐ: μ > 42.00', isCorrect: true },
+          { id: 'b', label: 'Left-tailed test: H₀: μ = 42.00 vs Hₐ: μ < 42.00', isCorrect: false },
+          { id: 'c', label: 'Two-tailed test: H₀: μ = 42.00 vs Hₐ: μ ≠ 42.00', isCorrect: false },
+          { id: 'd', label: 'Non-parametric: H₀: μ > 45.60 vs Hₐ: μ = 42.00', isCorrect: false },
+        ],
+      },
+      step2: {
+        question: 'For α = 0.01 in a right-tailed Z-test, what is the critical threshold value z_crit?',
+        options: [
+          { id: 'a', label: 'z_crit = +2.326 (rejection zone is z ≥ 2.326)', isCorrect: true },
+          { id: 'b', label: 'z_crit = +1.645', isCorrect: false },
+          { id: 'c', label: 'z_crit = ±2.576', isCorrect: false },
+          { id: 'd', label: 'z_crit = +1.960', isCorrect: false },
+        ],
+      },
+      step3: {
+        question: 'First calculate SE = 12 / √64 = 1.50, then compute z = (45.60 - 42.00) / 1.50. Enter z:',
+        correctValue: 2.4,
+        tolerance: 0.05,
+        unit: 'z-score',
+      },
+      step4: {
+        question: 'Compute the p-value: P(Z ≥ 2.40). Enter the probability (around 0.0082):',
+        correctValue: 0.0082,
+        tolerance: 0.003,
+      },
+      step5: {
+        question: 'Make the final statistical decision comparing p-value (0.0082) with α = 0.01:',
+        options: [
+          { id: 'a', label: 'Reject H₀ because 0.0082 < 0.01. Strong evidence that the new checkout boosts revenue.', isCorrect: true },
+          { id: 'b', label: 'Fail to reject H₀ because 0.0082 is close to zero.', isCorrect: false },
+          { id: 'c', label: 'Accept H₀ because more experiments are always required.', isCorrect: false },
+          { id: 'd', label: 'Reject Hₐ and conclude the old checkout is superior.', isCorrect: false },
+        ],
+      },
+    },
+  },
+  {
+    id: 'prob-3-manufacturing',
+    title: 'Food Packaging Quality Control: Cereal Box Net Weight',
+    domain: 'Manufacturing & Industrial Quality',
+    iconName: 'Package',
+    difficulty: 'Intermediate',
+    scenario:
+      'An automated food packaging line fills cereal boxes with an advertised target net weight of μ₀ = 500.0 grams. Overfilling causes substantial financial losses over millions of units, while underfilling leads to severe regulatory fines and consumer protection penalties. Thus, any deviation from 500g in either direction requires machine recalibration. The quality engineer takes an hourly random sample of n = 25 boxes. The sample mean is x̄ = 503.2 grams and the sample standard deviation is s = 7.5 grams (population σ is unknown). At α = 0.05, test if the machine is off-calibration.',
+    parameterSymbol: 'μ',
+    parameterName: 'Mean Net Package Weight',
+    unit: 'grams',
+    mu0: 500.0,
+    direction: 'two_tailed',
+    directionLabel: 'Two-tailed (Testing for any deviation: μ ≠ 500)',
+    h0Formula: 'H₀: μ = 500.0 g (Machine is accurately calibrated)',
+    haFormula: 'Hₐ: μ ≠ 500.0 g (Machine is out of calibration)',
+    testType: 't_test',
+    alpha: 0.05,
+    n: 25,
+    df: 24,
+    sampleMean: 503.2,
+    stdDev: 7.5,
+    stdError: 1.5,
+    testStatistic: 2.133,
+    criticalValues: {
+      left: -2.064,
+      right: 2.064,
+    },
+    pValue: 0.0433,
+    correctDecision: 'reject',
+    realWorldInterpretation:
+      'Because the sample standard deviation s was used with n = 25, we perform a Student-t test (df = 24). The calculated t = 2.133 exceeds t_crit = 2.064, yielding p = 0.0433 < 0.05. We reject H₀: the filling line is significantly deviating from the 500g standard and must be halted for recalibration.',
+    commonPitfall:
+      'Using a Z-test instead of a T-test when the population standard deviation σ is unknown and sample size is small (n = 25 < 30). For unknown σ, Student-t with df = n - 1 is mathematically required.',
+    questionPrompts: {
+      step1: {
+        question: 'Why is a two-tailed test formulated here?',
+        options: [
+          { id: 'a', label: 'Because deviations in either direction (underfilling < 500g or overfilling > 500g) are problematic.', isCorrect: true },
+          { id: 'b', label: 'Because sample size is less than 30.', isCorrect: false },
+          { id: 'c', label: 'Because the alternative hypothesis must always be two-tailed.', isCorrect: false },
+          { id: 'd', label: 'Because α is 0.05 instead of 0.01.', isCorrect: false },
+        ],
+      },
+      step2: {
+        question: 'What test statistic distribution applies, with what degrees of freedom (df)?',
+        options: [
+          { id: 'a', label: "Student's t-distribution with df = n - 1 = 24 (since population σ is unknown)", isCorrect: true },
+          { id: 'b', label: 'Standard Normal Z-distribution with df = 25', isCorrect: false },
+          { id: 'c', label: 'F-distribution with df1 = 1, df2 = 24', isCorrect: false },
+          { id: 'd', label: 'Binomial distribution with p = 0.5', isCorrect: false },
+        ],
+      },
+      step3: {
+        question: 'Calculate SE = s / √n = 7.5 / √25 = 1.50, then t = (503.2 - 500.0) / 1.50. Enter t (to 2 decimal places):',
+        correctValue: 2.13,
+        tolerance: 0.05,
+        unit: 't-score',
+      },
+      step4: {
+        question: 'For two-tailed t-test with df = 24 and t = 2.133, compute p-value = 2 × P(T₂₄ ≥ 2.133). Enter p-value (around 0.043):',
+        correctValue: 0.0433,
+        tolerance: 0.01,
+      },
+      step5: {
+        question: 'What is the decision at α = 0.05 and the required action?',
+        options: [
+          { id: 'a', label: 'Reject H₀ (p = 0.043 < 0.05). Machine is significantly off-spec and must be recalibrated.', isCorrect: true },
+          { id: 'b', label: 'Fail to reject H₀. Keep the machine running since difference is small.', isCorrect: false },
+          { id: 'c', label: 'Accept H₀. The machine is proven perfectly calibrated.', isCorrect: false },
+          { id: 'd', label: 'Retract the test because 503.2g is higher than 500g.', isCorrect: false },
+        ],
+      },
+    },
+  },
+  {
+    id: 'prob-4-cloud-latency',
+    title: 'Cloud Infrastructure: Server Response Latency',
+    domain: 'Software & Cloud Engineering',
+    iconName: 'Server',
+    difficulty: 'Advanced',
+    scenario:
+      'A cloud engineering team deployed an in-memory cache layer to reduce mean API response latency below the existing benchmark of μ₀ = 85.0 milliseconds. After deployment under representative load, a random sample of n = 36 API requests reveals a sample mean latency of x̄ = 83.1 ms and sample standard deviation s = 9.0 ms. The team conducts a hypothesis test at α = 0.05 to determine if the caching layer achieved a statistically significant latency reduction.',
+    parameterSymbol: 'μ',
+    parameterName: 'Mean API Latency',
+    unit: 'ms',
+    mu0: 85.0,
+    direction: 'left_tailed',
+    directionLabel: 'Left-tailed (Testing for reduction: μ < 85)',
+    h0Formula: 'H₀: μ = 85.0 ms (No latency improvement)',
+    haFormula: 'Hₐ: μ < 85.0 ms (Latency is significantly lower)',
+    testType: 't_test',
+    alpha: 0.05,
+    n: 36,
+    df: 35,
+    sampleMean: 83.1,
+    stdDev: 9.0,
+    stdError: 1.5,
+    testStatistic: -1.267,
+    criticalValues: {
+      left: -1.69,
+      right: null,
+    },
+    pValue: 0.1068,
+    correctDecision: 'fail_to_reject',
+    realWorldInterpretation:
+      'The calculated test statistic t = -1.267 does NOT fall in the rejection region (it is to the right of t_crit = -1.690), and the p-value = 0.1068 is greater than α = 0.05. We FAIL TO REJECT H₀. There is insufficient statistical evidence to claim that the in-memory cache reliably reduces API latency.',
+    commonPitfall:
+      'Confusing "failing to reject H₀" with "proving H₀ is true". We did NOT prove the cache has zero effect; rather, the observed 1.9 ms decrease could easily be natural sample variance (a 10.7% chance under the null).',
+    questionPrompts: {
+      step1: {
+        question: 'What is the correct null and alternative hypothesis formulation?',
+        options: [
+          { id: 'a', label: 'H₀: μ = 85.0 ms vs Hₐ: μ < 85.0 ms', isCorrect: true },
+          { id: 'b', label: 'H₀: μ < 85.0 ms vs Hₐ: μ = 85.0 ms', isCorrect: false },
+          { id: 'c', label: 'H₀: x̄ = 83.1 ms vs Hₐ: x̄ < 85.0 ms', isCorrect: false },
+          { id: 'd', label: 'H₀: μ = 85.0 ms vs Hₐ: μ ≠ 85.0 ms', isCorrect: false },
+        ],
+      },
+      step2: {
+        question: 'What is the critical threshold t_crit for a left-tailed test with df = 35 and α = 0.05?',
+        options: [
+          { id: 'a', label: 't_crit = -1.690 (rejection region is t ≤ -1.690)', isCorrect: true },
+          { id: 'b', label: 't_crit = -2.030', isCorrect: false },
+          { id: 'c', label: 't_crit = +1.645', isCorrect: false },
+          { id: 'd', label: 't_crit = 0.05', isCorrect: false },
+        ],
+      },
+      step3: {
+        question: 'Calculate SE = 9.0 / √36 = 1.50 ms, then compute t = (83.1 - 85.0) / 1.50. Enter t (rounded to 2 decimal places):',
+        correctValue: -1.27,
+        tolerance: 0.05,
+        unit: 't-score',
+      },
+      step4: {
+        question: 'Find the left-tail probability P(T₃₅ ≤ -1.267). Enter p-value (around 0.107):',
+        correctValue: 0.1068,
+        tolerance: 0.01,
+      },
+      step5: {
+        question: 'Because p = 0.107 > α = 0.05, what is the mathematically sound conclusion?',
+        options: [
+          { id: 'a', label: 'Fail to reject H₀: Insufficient statistical evidence to conclude the cache improves latency.', isCorrect: true },
+          { id: 'b', label: 'Accept H₀: The cache is 100% proven to be useless.', isCorrect: false },
+          { id: 'c', label: 'Reject H₀: Because 83.1 is lower than 85.0.', isCorrect: false },
+          { id: 'd', label: 'Increase α to 0.15 until the result becomes significant.', isCorrect: false },
+        ],
+      },
+    },
+  },
+  {
+    id: 'prob-5-ev-range',
+    title: 'Clean Energy & Automotive: Electric Vehicle Range',
+    domain: 'Automotive & Clean Energy',
+    iconName: 'Zap',
+    difficulty: 'Advanced',
+    scenario:
+      'An electric vehicle manufacturer advertises that their standard sedan gets μ₀ = 300.0 miles of highway range on a full charge. A new firmware update (Version 4.2) implements regenerative braking algorithms designed to increase range. A fleet test of n = 16 production vehicles in cold weather conditions yields a sample mean of x̄ = 308.4 miles and sample standard deviation s = 12.0 miles. Test at α = 0.05 whether the firmware upgrade significantly exceeds the 300-mile benchmark.',
+    parameterSymbol: 'μ',
+    parameterName: 'Mean Highway Range',
+    unit: 'miles',
+    mu0: 300.0,
+    direction: 'right_tailed',
+    directionLabel: 'Right-tailed (Testing for increase: μ > 300)',
+    h0Formula: 'H₀: μ = 300.0 miles (No increase beyond benchmark)',
+    haFormula: 'Hₐ: μ > 300.0 miles (Firmware upgrade increases range)',
+    testType: 't_test',
+    alpha: 0.05,
+    n: 16,
+    df: 15,
+    sampleMean: 308.4,
+    stdDev: 12.0,
+    stdError: 3.0,
+    testStatistic: 2.80,
+    criticalValues: {
+      left: null,
+      right: 1.753,
+    },
+    pValue: 0.0067,
+    correctDecision: 'reject',
+    realWorldInterpretation:
+      'With t = 2.80 substantially larger than t_crit = 1.753 (df = 15), and p = 0.0067 < 0.05, we reject H₀. There is compelling statistical evidence that the firmware update yields higher highway range.',
+    commonPitfall:
+      'Failing to adjust degrees of freedom for small sample size (n=16, df=15). In t-distributions with low degrees of freedom, the tails are heavier, requiring a larger critical value (1.753 vs normal 1.645).',
+    questionPrompts: {
+      step1: {
+        question: 'State the directional hypotheses for this firmware upgrade claim:',
+        options: [
+          { id: 'a', label: 'H₀: μ = 300.0 vs Hₐ: μ > 300.0', isCorrect: true },
+          { id: 'b', label: 'H₀: μ = 308.4 vs Hₐ: μ > 308.4', isCorrect: false },
+          { id: 'c', label: 'H₀: μ > 300.0 vs Hₐ: μ ≤ 300.0', isCorrect: false },
+          { id: 'd', label: 'H₀: μ = 300.0 vs Hₐ: μ ≠ 300.0', isCorrect: false },
+        ],
+      },
+      step2: {
+        question: 'Determine the test and critical value for right-tailed t-test with n = 16 (df = 15) at α = 0.05:',
+        options: [
+          { id: 'a', label: 'One-tailed t-test, df = 15, t_crit = +1.753', isCorrect: true },
+          { id: 'b', label: 'One-tailed Z-test, z_crit = +1.645', isCorrect: false },
+          { id: 'c', label: 'Two-tailed t-test, t_crit = ±2.131', isCorrect: false },
+          { id: 'd', label: 'Paired t-test, df = 16, t_crit = 1.96', isCorrect: false },
+        ],
+      },
+      step3: {
+        question: 'Calculate SE = 12.0 / √16 = 3.00, then compute t = (308.4 - 300.0) / 3.00. Enter t-statistic:',
+        correctValue: 2.8,
+        tolerance: 0.05,
+        unit: 't-score',
+      },
+      step4: {
+        question: 'Compute right-tail p-value P(T₁₅ ≥ 2.80). Enter p-value (around 0.0067):',
+        correctValue: 0.0067,
+        tolerance: 0.002,
+      },
+      step5: {
+        question: 'Evaluate the test result against α = 0.05:',
+        options: [
+          { id: 'a', label: 'Reject H₀: Since p (0.0067) < 0.05, evidence confirms firmware significantly boosts vehicle range.', isCorrect: true },
+          { id: 'b', label: 'Fail to reject H₀: Because the sample size was too small to make any claim.', isCorrect: false },
+          { id: 'c', label: 'Reject Hₐ: We conclude range is exactly 300 miles.', isCorrect: false },
+          { id: 'd', label: 'Accept H₀: The null hypothesis is proven true.', isCorrect: false },
+        ],
+      },
+    },
+  },
+];

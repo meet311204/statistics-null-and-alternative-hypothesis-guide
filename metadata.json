@@ -1,0 +1,6 @@
+{
+  "name": "HypothesisLab - Interactive Hypothesis Testing & Statistical Mastery",
+  "description": "Master null and alternative hypothesis testing through interactive visual simulations, Monte Carlo sampling experiments, 5-step guided practice problems, AI image generation, and Dr. Hypo stats chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
